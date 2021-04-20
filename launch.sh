@@ -4,6 +4,14 @@ echo "Starting GPhotos Synch..."
 
 GPHOTOS_OPTS=""
 
+if [ "$GPHOTOS_LOG_LEVEL" != "" ]; then
+    GPHOTOS_OPTS="$GPHOTOS_OPTS --log-level=$GPHOTOS_LOG_LEVEL"
+fi
+
+if [ "$GPHOTOS_SECRET" != "" ]; then
+    GPHOTOS_OPTS="$GPHOTOS_OPTS --secret=$GPHOTOS_SECRET"
+fi
+
 if [ "$GPHOTOS_START_DATE" != "" ]; then
     GPHOTOS_OPTS="$GPHOTOS_OPTS --start-date=$GPHOTOS_START_DATE"
 fi
@@ -93,11 +101,13 @@ if [ "$GPHOTOS_CASE_INSENSITIVE_FS" != 0 ]; then
 fi
 
 if [ "$GPHOTOS_ARCHIVED" != 0 ]; then
-  GPHOTOS_OPTS="$GPHOTOS_OPTS --archived"
+    GPHOTOS_OPTS="$GPHOTOS_OPTS --archived"
 fi
 
 if [ "$GPHOTOS_PROGRESS" != 0 ]; then
-  GPHOTOS_OPTS="$GPHOTOS_OPTS --progress"
+    GPHOTOS_OPTS="$GPHOTOS_OPTS --progress"
 fi
+
+echo "Lauch GPhotos $GPHOTOS_OPTS"
 
 gphotos-sync $GPHOTOS_OPTS /storage
