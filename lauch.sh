@@ -1,1 +1,11 @@
-
+echo "-------------------------------------------------------------------"
+echo " "
+echo "              Firmware Flashing Script"
+echo " "
+echo "                       Version: "
+echo " "
+echo "-------------------------------------------------------------------"
+echo " "
+echo " "
+echo "Listing attached devices..."
+echo " "
