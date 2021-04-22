@@ -1,7 +1,14 @@
 FROM gilesknap/gphotos-sync:latest
 
+CMD export PATH=$PATH:$ADDITIONAL_PATH
+
+RUN apt update && apt install -y cron htop nano
+#RUN apk update --no-cache && apk add busybox-initscripts
+#RUN rc-service crond start && rc-update add crond
+
 # Runtime environment variables
 ENV GPHOTOS_PROGRESS=1 \
+    GPHOTOS_CRON="*/2 * * * *" \
     #GPHOTOS_ALBUM ALBUM \
     GPHOTOS_LOG_LEVEL="error" \
     #GPHOTOS_LOGFILE LOGFILE \

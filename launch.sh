@@ -108,6 +108,15 @@ if [ "$GPHOTOS_PROGRESS" != 0 ]; then
     GPHOTOS_OPTS="$GPHOTOS_OPTS --progress"
 fi
 
-echo "Lauch GPhotos $GPHOTOS_OPTS"
+if [ "$GPHOTOS_CRON" != "" ]; then
+    echo "Starting periodic command scheduler cron..."
+    /etc/init.d/cron start
+    /usr/bin/crontab -r || true; 
+    echo "$GPHOTOS_CRON gphotos-sync $GPHOTOS_OPTS /storage" > crontab.txt|/usr/bin/crontab
+    echo "Updated crontab with $GPHOTOS_CRON"
+else
+    echo "Lauch GPhotos with $GPHOTOS_OPTS"
+    gphotos-sync $GPHOTOS_OPTS /storage
+fi
 
-gphotos-sync $GPHOTOS_OPTS /storage
+tail -f /dev/null
