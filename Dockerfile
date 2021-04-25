@@ -3,7 +3,7 @@ FROM gilesknap/gphotos-sync:latest
 CMD export PATH=$PATH:$ADDITIONAL_PATH
 
 RUN apt update && apt install -y cron htop nano
-RUN cat crontab.txt | /usr/bin/crontab -
+RUN cat crontab.default | /usr/bin/crontab -
 RUN /etc/init.d/cron start
 
 # Runtime environment variables

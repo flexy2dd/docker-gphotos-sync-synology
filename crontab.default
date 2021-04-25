@@ -1,0 +1,2 @@
+# default empty crontab
+*/15 * * * * /usr/local/bin/gphotos-sync --progress --start-date=2021-04-17 /storage >/storage/cronrun.log 2>&1
