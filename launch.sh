@@ -111,11 +111,13 @@ fi
 if [ "$GPHOTOS_CRON" != "" ]; then
     echo "Starting periodic command scheduler cron..."
     /usr/bin/crontab -r || true; 
-    echo "$GPHOTOS_CRON flock -n /tmp/gphotos-sync.lock /usr/local/bin/gphotos-sync $GPHOTOS_OPTS /storage" >/storage/cronrun.log 2>&1
+    echo "$GPHOTOS_CRON flock -n /tmp/gphotos-sync.lock /usr/local/bin/gphotos-sync $GPHOTOS_OPTS /storage >/storage/cronrun.log 2>&1" > crontab.txt
     cat crontab.txt | /usr/bin/crontab -
     echo "Updated crontab with $GPHOTOS_CRON"
+    /etc/init.d/cron restart
+    echo "Crontab restared"
 else
-    echo "Lauch GPhotos with $GPHOTOS_OPTS"
+    echo "Launch GPhotos with $GPHOTOS_OPTS"
     gphotos-sync $GPHOTOS_OPTS /storage
 fi
 

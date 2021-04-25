@@ -5,9 +5,7 @@ CMD export PATH=$PATH:$ADDITIONAL_PATH
 RUN apt update && apt install -y cron htop nano
 
 COPY crontab.default /
-RUN /etc/init.d/cron start
 RUN cat crontab.default | /usr/bin/crontab -
-RUN /etc/init.d/cron restart
 
 # Runtime environment variables
 ENV GPHOTOS_PROGRESS=1 \
