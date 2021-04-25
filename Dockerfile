@@ -3,6 +3,7 @@ FROM gilesknap/gphotos-sync:latest
 CMD export PATH=$PATH:$ADDITIONAL_PATH
 
 RUN apt update && apt install -y cron htop nano
+RUN /etc/init.d/cron start
 #RUN apk update --no-cache && apk add busybox-initscripts
 #RUN rc-service crond start && rc-update add crond
 

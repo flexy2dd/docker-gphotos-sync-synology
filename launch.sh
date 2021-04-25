@@ -110,7 +110,6 @@ fi
 
 if [ "$GPHOTOS_CRON" != "" ]; then
     echo "Starting periodic command scheduler cron..."
-    /etc/init.d/cron start
     /usr/bin/crontab -r || true; 
     echo "$GPHOTOS_CRON gphotos-sync $GPHOTOS_OPTS /storage" > crontab.txt
     cat crontab.txt | /usr/bin/crontab -
